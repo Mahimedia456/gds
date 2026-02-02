@@ -1,63 +1,54 @@
-import { useEffect, useState } from "react";
-import { Button } from "./Button";
-
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all ${scrolled ? "bg-white/90 backdrop-blur shadow" : "bg-transparent"}`}>
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-3">
-            <img src="/images/logo.svg" alt="Logo" className="h-8 w-auto" />
-          </a>
+    <header className="main-header" id="top">
+      <div className="header-sticky">
+        <nav className="navbar navbar-expand-lg">
+          <div className="container">
+            <a className="navbar-brand" href="#home">
+              {/* Put your logo in public/images/logo.svg later. For now use a temp */}
+              <img
+                src="https://dummyimage.com/160x42/000/fff&text=GDS+MECH"
+                alt="Logo"
+                style={{ height: 36 }}
+              />
+            </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
-            <a href="#home" className="hover:text-[var(--brand)]">Home</a>
-            <a href="#about" className="hover:text-[var(--brand)]">About</a>
-            <a href="#services" className="hover:text-[var(--brand)]">Services</a>
-            <a href="#projects" className="hover:text-[var(--brand)]">Projects</a>
-            <a href="#contact" className="hover:text-[var(--brand)]">Contact</a>
-          </nav>
+            <div className="collapse navbar-collapse main-menu">
+              <div className="nav-menu-wrapper">
+                <ul className="navbar-nav mr-auto" id="menu">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#home">Home</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#about">About</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#services">Services</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#projects">Projects</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#faqs">FAQs</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#contact">Contact</a>
+                  </li>
+                </ul>
+              </div>
 
-          <div className="hidden lg:block">
-            <Button onClick={() => (window.location.href = "#contact")}>
-              Contact Us
-            </Button>
-          </div>
-
-          {/* Mobile */}
-          <button
-            className="lg:hidden rounded-xl border px-3 py-2"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
-          >
-            ☰
-          </button>
-        </div>
-
-        {open && (
-          <div className="lg:hidden pb-4">
-            <div className="grid gap-3 text-sm font-medium">
-              {["home","about","services","projects","contact"].map((id) => (
-                <a key={id} href={`#${id}`} className="py-2" onClick={() => setOpen(false)}>
-                  {id.toUpperCase()}
+              <div className="header-btn">
+                <a href="#contact" className="btn-default btn-highlighted">
+                  Contact Us
                 </a>
-              ))}
-              <Button className="w-fit" onClick={() => setOpen(false)}>Contact Us</Button>
+              </div>
             </div>
+
+            <div className="navbar-toggle"></div>
           </div>
-        )}
+        </nav>
+
+        <div className="responsive-menu"></div>
       </div>
     </header>
   );

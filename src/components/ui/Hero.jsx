@@ -1,130 +1,197 @@
-import Reveal from "../motion/Reveal";
-import { Button } from "./Button";
-import VideoModal from "./VideoModal";
+import { useState } from "react";
 
 export default function Hero() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <section id="home" className="relative pt-24">
-      {/* Background */}
+    <>
       <div
-        className="absolute inset-0 -z-10 bg-[var(--dark)]"
+        className="hero dark-section parallaxie"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.85)), url('/images/hero-bg.jpg')",
+            "url(https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=2200&q=70)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed", // parallax-like (simple + 1:1 feel)
         }}
-      />
+      >
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-xl-8 col-md-10">
+              <div className="hero-content">
+                <div className="section-title">
+                  <h3 className="wow fadeInUp">Where Precision Meets Performance</h3>
+                  <h1 className="text-anime-style-3" data-cursor="-opaque">
+                    HVAC & construction solutions that inspire and endure
+                  </h1>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">
+                    We deliver commercial HVAC, industrial systems, and public sector work with high standards,
+                    clean workmanship, and on-time execution.
+                  </p>
+                </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <Reveal>
-              <p className="text-sm font-semibold text-white/80">
-                Where Creativity Meets Structural Mastery
-              </p>
-            </Reveal>
+                <div className="hero-content-body wow fadeInUp" data-wow-delay="0.4s">
+                  <div className="hero-btn">
+                    <a href="#contact" className="btn-default btn-highlighted">
+                      Get Free Estimate
+                    </a>
+                  </div>
 
-            <Reveal delay={0.1}>
-              <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                Where innovative design meet precision construction to create spaces that inspire and endure
-              </h1>
-            </Reveal>
+                  <div className="video-play-button" style={{ cursor: "pointer" }} onClick={() => setOpen(true)}>
+                    <a href="#video" onClick={(e) => e.preventDefault()} data-cursor-text="Play">
+                      <i className="fa-solid fa-play"></i>
+                    </a>
+                    <h3>Watch Our Video</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <Reveal delay={0.2}>
-              <p className="mt-6 max-w-2xl text-white/75">
-                Our approach unites visionary architecture with flawless construction execution.
-                From concept to completion, we build environments that tell a story of innovation,
-                precision, and enduring quality.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <div className="mt-8 flex flex-wrap items-center gap-6">
-                <Button>Get Free Estimate</Button>
-                <VideoModal
-                  trigger={
-                    <button className="group inline-flex items-center gap-3 text-white">
-                      <span className="grid h-12 w-12 place-items-center rounded-full bg-white/10 border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:scale-105">
-                        ▶
-                      </span>
-                      <span className="text-sm font-semibold">Watch Our Video</span>
-                    </button>
-                  }
-                  videoUrl="https://www.youtube.com/embed/Y-x0efG1seA"
+            <div className="col-xl-4 col-md-2">
+              <div className="year-experience-circle">
+                {/* temp circle */}
+                <img
+                  src="https://dummyimage.com/220x220/ffd400/000&text=25%2B+Years"
+                  alt=""
+                  style={{ borderRadius: "50%" }}
                 />
               </div>
-            </Reveal>
-          </div>
-
-          {/* Right circle */}
-          <div className="hidden lg:col-span-4 lg:block">
-            <div className="grid place-items-center">
-              <img
-                src="/images/year-experience-circle-transperant.svg"
-                alt=""
-                className="w-[280px] animate-spin-slow"
-              />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Hero info box */}
-      <div className="mx-auto max-w-7xl px-4 -mt-16 pb-14">
-        <div className="grid gap-6 lg:grid-cols-12">
-          <div className="lg:col-span-5 rounded-3xl bg-white p-6 shadow-lg overflow-hidden group">
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <p className="text-xs font-semibold text-neutral-500">DesignBuild</p>
-                <h3 className="mt-2 text-xl font-bold">Shaping the future of design</h3>
+      {/* Hero Info Boxes */}
+      <div className="hero-info-box">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="hero-info-list">
+                <div className="hero-info-item box-1">
+                  <div className="hero-info-content-box">
+                    <div className="hero-info-item-content">
+                      <ul>
+                        <li>DesignBuild</li>
+                      </ul>
+                      <h3>Shaping the future of performance</h3>
+                    </div>
+                    <div className="hero-info-btn">
+                      <a href="#services" className="readmore-btn">
+                        Learn More
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="hero-info-image">
+                    <figure className="image-anime reveal">
+                      <img
+                        src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=70"
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                </div>
+
+                <div className="hero-info-item box-2">
+                  <figure className="image-anime reveal">
+                    <img
+                      src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=70"
+                      alt=""
+                    />
+                  </figure>
+                </div>
+
+                <div className="hero-info-item box-3">
+                  <div className="hero-info-header">
+                    <div className="icon-box">
+                      <div
+                        style={{
+                          width: 44,
+                          height: 44,
+                          borderRadius: 12,
+                          background: "rgba(255,255,255,0.1)",
+                          display: "grid",
+                          placeItems: "center",
+                        }}
+                      >
+                        <i className="fa-solid fa-helmet-safety"></i>
+                      </div>
+                    </div>
+
+                    <div className="satisfy-client-images">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <div className="satisfy-client-image" key={i}>
+                          <figure className="image-anime">
+                            <img
+                              src={`https://i.pravatar.cc/60?img=${10 + i}`}
+                              alt=""
+                            />
+                          </figure>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="hero-info-counter-box">
+                    <h3>Happy Satisfied Customers</h3>
+                    <h2>15K+</h2>
+                  </div>
+
+                  <div className="hero-info-bg-icon">
+                    <div
+                      style={{
+                        width: 140,
+                        height: 140,
+                        borderRadius: 999,
+                        background: "rgba(255,255,255,0.06)",
+                        position: "absolute",
+                        right: -10,
+                        bottom: -10,
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
-              <a className="text-sm font-semibold text-[var(--brand)] hover:underline" href="#about">
-                Learn More
-              </a>
             </div>
-
-            <div className="mt-6 overflow-hidden rounded-2xl">
-              <img
-                src="/images/hero-info-image-1.jpg"
-                alt=""
-                className="h-44 w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-            </div>
-          </div>
-
-          <div className="lg:col-span-3 rounded-3xl overflow-hidden shadow-lg group">
-            <img
-              src="/images/hero-info-image-2.jpg"
-              alt=""
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-          </div>
-
-          <div className="lg:col-span-4 rounded-3xl bg-[var(--dark)] p-6 text-white shadow-lg relative overflow-hidden">
-            <div className="flex items-center justify-between">
-              <img src="/images/icon-hero-info-1.svg" alt="" className="h-10 w-10" />
-              <div className="flex -space-x-2">
-                {["author-1.jpg","author-2.jpg","author-3.jpg","author-4.jpg","author-5.jpg"].map((a) => (
-                  <img key={a} src={`/images/${a}`} alt="" className="h-9 w-9 rounded-full border-2 border-[var(--dark)] object-cover" />
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <p className="text-sm text-white/70">Happy Satisfied Customers</p>
-              <h3 className="mt-2 text-4xl font-extrabold">15K+</h3>
-            </div>
-
-            <img
-              src="/images/icon-hero-info-bg-1.svg"
-              alt=""
-              className="absolute -right-6 -bottom-6 h-32 w-32 opacity-20"
-            />
           </div>
         </div>
       </div>
-    </section>
+
+      {/* Local modal trigger for hero (optional) */}
+      {open && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.75)",
+            zIndex: 9999,
+            display: "grid",
+            placeItems: "center",
+            padding: 16,
+          }}
+          onClick={() => setOpen(false)}
+        >
+          <div
+            style={{ width: "min(980px, 100%)", background: "#000", borderRadius: 18, overflow: "hidden" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", justifyContent: "flex-end", padding: 10 }}>
+              <button
+                className="btn-default"
+                style={{ padding: "8px 12px" }}
+                onClick={() => setOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+            <video
+              src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+              controls
+              autoPlay
+              style={{ width: "100%", height: 520, objectFit: "cover", display: "block" }}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -1,12 +1,10 @@
 // src/Home.jsx
-
-// UI components
 import Header from "./components/ui/Header.jsx";
 import Hero from "./components/ui/Hero.jsx";
 import Projects from "./components/ui/Projects.jsx";
 import VideoModal from "./components/ui/VideoModal.jsx";
+import Footer from "./components/ui/Footer.jsx";
 
-// Section components
 import AboutUs from "./components/sections/AboutUs.jsx";
 import OurServices from "./components/sections/OurServices.jsx";
 import WhatWeDo from "./components/sections/WhatWeDo.jsx";
@@ -19,8 +17,7 @@ export default function Home() {
   return (
     <>
       <Header />
-
-      <main>
+      <main id="home">
         <Hero />
         <AboutUs />
         <OurServices />
@@ -31,7 +28,7 @@ export default function Home() {
         <OurFaqs />
         <OurTestimonials />
       </main>
-
+      <Footer />
       <VideoModal />
     </>
   );

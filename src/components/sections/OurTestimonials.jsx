@@ -1,29 +1,45 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-
 const TESTIMONIALS = [
-  { logo: "/images/company-logo-1.svg", text: "“The team turned our dream home into a reality...”", name: "Darlene Robertson", role: "Interior Designer" },
-  { logo: "/images/company-logo-2.svg", text: "“Professional and precise from start to finish...”", name: "Savannah Nguyen", role: "Interior Designer" },
-  { logo: "/images/company-logo-3.svg", text: "“Amazing experience, great workmanship...”", name: "Wade Warren", role: "Interior Designer" },
+  {
+    name: "Darlene Robertson",
+    role: "Facility Manager",
+    quote:
+      "Clean install, clear communication, and the team finished on schedule. Great experience.",
+  },
+  {
+    name: "Savannah Nguyen",
+    role: "Operations Lead",
+    quote:
+      "Professional crew. Great planning and a smooth handover with everything documented.",
+  },
+  {
+    name: "Wade Warren",
+    role: "Project Manager",
+    quote:
+      "Reliable quality. They kept the site tidy and hit our deadlines.",
+  },
 ];
 
 export default function OurTestimonials() {
   return (
-    <div className="our-testimonials" id="testimonials">
+    <div className="our-testimonials">
       <div className="container">
         <div className="row">
           <div className="col-xl-5">
             <div className="our-testimonial-content">
               <div className="section-title">
-                <h3>Our Testimonials</h3>
-                <h2>Real feedback from those who built their dreams</h2>
-                <p>Our commitment to excellence has earned us the trust of homeowners and businesses.</p>
+                <h3 className="wow fadeInUp">Our Testimonials</h3>
+                <h2 className="text-anime-style-3" data-cursor="-opaque">
+                  Real feedback from teams we helped
+                </h2>
+                <p className="wow fadeInUp" data-wow-delay="0.2s">
+                  Our work is built on trust — clean execution and dependable results.
+                </p>
               </div>
 
-              <div className="testimonial-btn">
-                <a href="/testimonials" className="btn-default">View all testimonials</a>
+              <div className="testimonial-btn wow fadeInUp" data-wow-delay="0.4s">
+                <a href="#contact" className="btn-default">
+                  Get a Quote
+                </a>
               </div>
             </div>
           </div>
@@ -31,41 +47,40 @@ export default function OurTestimonials() {
           <div className="col-xl-7">
             <div className="testimonial-slider-box">
               <div className="testimonial-slider">
-                <Swiper
-                  modules={[Pagination]}
-                  slidesPerView={1}
-                  spaceBetween={20}
-                  pagination={{ el: ".testimonial-pagination", clickable: true }}
-                >
-                  {TESTIMONIALS.map((t) => (
-                    <SwiperSlide key={t.name}>
-                      <div className="testimonial-item">
-                        <div className="testimonial-company-logo">
-                          <img src={t.logo} alt="" />
-                        </div>
-
-                        <div className="testimonial-item-body">
-                          <div className="testimonial-item-content">
-                            <p>{t.text}</p>
+                <div className="swiper">
+                  <div className="swiper-wrapper">
+                    {TESTIMONIALS.map((t) => (
+                      <div className="swiper-slide" key={t.name}>
+                        <div className="testimonial-item">
+                          <div className="testimonial-company-logo">
+                            <img
+                              src="https://dummyimage.com/120x36/fff/000&text=GDS"
+                              alt=""
+                            />
                           </div>
 
-                          <div className="testimonial-author-content">
-                            <h3>{t.name}</h3>
-                            <p>{t.role}</p>
+                          <div className="testimonial-item-body">
+                            <div className="testimonial-item-content">
+                              <p>“{t.quote}”</p>
+                            </div>
+                            <div className="testimonial-author-content">
+                              <h3>{t.name}</h3>
+                              <p>{t.role}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                    ))}
+                  </div>
 
-                <div className="testimonial-pagination" />
+                  <div className="testimonial-pagination"></div>
+                </div>
               </div>
 
-              <div className="section-footer-text section-footer-contact">
+              <div className="section-footer-text section-footer-contact wow fadeInUp" data-wow-delay="0.2s">
                 <p>
-                  <span><img src="/images/icon-phone-primary.svg" alt="" /></span>
-                  {" "}Build smarter, design better - <a href="/contact">start your project with us today</a>
+                  <span><i className="fa-solid fa-phone"></i></span>{" "}
+                  Build smarter — <a href="#contact">start your project today</a>
                 </p>
               </div>
 

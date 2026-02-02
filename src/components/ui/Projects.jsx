@@ -1,9 +1,48 @@
-// src/components/Projects.jsx
 import { useMemo, useState } from "react";
 
 const ITEMS = [
-  { id: 1, title: "Maplewood Apartments", tag: "Residential", cats: ["Residential","Corporate"], img: "/images/project-image-1.jpg" },
-  { id: 2, title: "Metro Industrial Hub", tag: "Industrial", cats: ["Residential","Industrial"], img: "/images/project-image-2.jpg" },
+  {
+    id: 1,
+    title: "Maplewood Apartments",
+    tag: "Residential Architecture",
+    cats: ["Residential", "Corporate"],
+    img: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=70",
+  },
+  {
+    id: 2,
+    title: "Metro Industrial Hub",
+    tag: "Industrial Facility",
+    cats: ["Industrial"],
+    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=70",
+  },
+  {
+    id: 3,
+    title: "Horizon Office Park",
+    tag: "Corporate Build",
+    cats: ["Corporate", "Commercial"],
+    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=70",
+  },
+  {
+    id: 4,
+    title: "Retail Renovation",
+    tag: "Commercial Renovation",
+    cats: ["Commercial"],
+    img: "https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=1600&q=70",
+  },
+  {
+    id: 5,
+    title: "Logistics Hub",
+    tag: "Commercial Infrastructure",
+    cats: ["Commercial", "Industrial"],
+    img: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1600&q=70",
+  },
+  {
+    id: 6,
+    title: "Public Sector Upgrade",
+    tag: "Municipal Project",
+    cats: ["Corporate", "Commercial"],
+    img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1600&q=70",
+  },
 ];
 
 export default function Projects() {
@@ -16,55 +55,86 @@ export default function Projects() {
   }, [active]);
 
   return (
-    <section id="projects" className="py-20">
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <p className="text-sm font-semibold text-neutral-500">Our Projects</p>
-            <h2 className="mt-3 text-3xl font-extrabold">
-              A showcase of architecture that inspires and endures
-            </h2>
+    <section className="our-projects" id="projects" style={{ paddingTop: 90, paddingBottom: 90 }}>
+      <div className="container">
+        <div className="row section-row align-items-center">
+          <div className="col-xl-6">
+            <div className="section-title">
+              <h3 className="wow fadeInUp">Our Projects</h3>
+              <h2 className="text-anime-style-3" data-cursor="-opaque">
+                A showcase of work that inspires and endures
+              </h2>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            {cats.map((c) => (
-              <button
-                key={c}
-                onClick={() => setActive(c)}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  active === c
-                    ? "bg-[var(--brand)] text-white"
-                    : "bg-neutral-100 hover:bg-neutral-200"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+          <div className="col-xl-6">
+            <div className="section-content-btn">
+              <div className="section-title-content wow fadeInUp" data-wow-delay="0.2s">
+                <p>
+                  Take a closer look at our work — modern aesthetics, safe installs, and high-quality execution.
+                </p>
+              </div>
+              <div className="section-btn wow fadeInUp" data-wow-delay="0.4s">
+                <a href="#contact" className="btn-default">
+                  View All Projects
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {filtered.map((p) => (
-            <a
-              key={p.id}
-              href="#"
-              className="group relative overflow-hidden rounded-3xl bg-black"
-            >
-              <img
-                src={p.img}
-                alt=""
-                className="h-72 w-full object-cover opacity-85 transition duration-700 group-hover:scale-110 group-hover:opacity-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5">
-                <h3 className="text-lg font-bold text-white">{p.title}</h3>
-                <p className="text-sm text-white/75">{p.tag}</p>
-              </div>
-              <div className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white transition group-hover:bg-white/20">
-                ↗
-              </div>
-            </a>
-          ))}
+        {/* Filter */}
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="project-nav wow fadeInUp" data-wow-delay="0.2s">
+              <ul>
+                {cats.map((c) => (
+                  <li key={c}>
+                    <button
+                      type="button"
+                      onClick={() => setActive(c)}
+                      className={active === c ? "active-btn" : ""}
+                      style={{ background: "transparent", border: 0 }}
+                    >
+                      {c.toLowerCase()}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Grid */}
+          <div className="col-lg-12">
+            <div className="row project-item-list wow fadeInUp" data-wow-delay="0.4s">
+              {filtered.map((p) => (
+                <div className="col-xl-4 col-md-6 project-item-box" key={p.id}>
+                  <div className="project-item">
+                    <div className="project-item-image">
+                      <a href="#contact" data-cursor-text="View">
+                        <figure className="image-anime">
+                          <img src={p.img} alt={p.title} />
+                        </figure>
+                      </a>
+                    </div>
+
+                    <div className="project-item-content">
+                      <h2>
+                        <a href="#contact">{p.title}</a>
+                      </h2>
+                      <p>{p.tag}</p>
+                    </div>
+
+                    <div className="project-item-btn">
+                      <a href="#contact" aria-label="Open project">
+                        <span style={{ fontSize: 22, color: "#fff" }}>↗</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
