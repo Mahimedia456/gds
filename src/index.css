@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional global polish */
+:root { color-scheme: light; }
+html, body { height: 100%; }
+body { margin: 0; }
+
+/* Font Awesome Brands */
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/src/assets/fonts/fa-brands-400.woff2") format("woff2");
+}
+
+/* Font Awesome Regular */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/src/assets/fonts/fa-regular-400.woff2") format("woff2");
+}
+
+/* Font Awesome Solid */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/src/assets/fonts/fa-solid-900.woff2") format("woff2");
+}
+
+/* Font Awesome v4 compatibility */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/src/assets/fonts/fa-v4compatibility.woff2") format("woff2");
+}
+@layer utilities {
+  .fa {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+  }
+
+  .fa-regular {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+  }
+
+  .fa-brands {
+    font-family: "Font Awesome 6 Brands";
+    font-weight: 400;
+  }
+}
+@layer utilities {
+  .animate-spin-slow { animation: spin 18s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+}
