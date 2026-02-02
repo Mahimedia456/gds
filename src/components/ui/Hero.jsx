@@ -1,17 +1,16 @@
 // src/components/ui/Hero.jsx
 import VideoModal from "./VideoModal";
 
+/** HERO bg (architecture like template) */
 const HERO_BG =
   "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=2200&q=80";
 
+/** 3 cards images (URL for now) */
 const INFO_IMG_1 =
   "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1600&q=80";
 
 const INFO_IMG_2 =
   "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80";
-
-const INFO_IMG_3 =
-  "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1800&q=80";
 
 const AVATARS = [
   "https://randomuser.me/api/portraits/men/32.jpg",
@@ -24,12 +23,12 @@ const AVATARS = [
 export default function Hero() {
   return (
     <>
-      {/* ✅ HERO (template structure) */}
-      <section
-        id="home"
+      {/* HERO */}
+      <div
         className="hero dark-section parallaxie"
+        id="home"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(9,20,32,.78) 0%, rgba(9,20,32,.55) 55%, rgba(9,20,32,.35) 100%), url(${HERO_BG})`,
+          backgroundImage: `linear-gradient(90deg, rgba(9,20,32,.72) 0%, rgba(9,20,32,.45) 55%, rgba(9,20,32,.25) 100%), url(${HERO_BG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -42,13 +41,11 @@ export default function Hero() {
                 <div className="section-title">
                   <h3>WHERE CREATIVITY MEETS STRUCTURAL MASTERY</h3>
                   <h1>
-                    Where innovative design meet precision construction to create spaces that inspire
-                    and endure
+                    Where innovative design meet precision construction to create spaces that inspire and endure
                   </h1>
                   <p>
-                    Our approach unites visionary architecture with flawless construction execution.
-                    From concept to completion, we build environments that tell a story of innovation,
-                    precision, and enduring quality.
+                    Our approach unites visionary architecture with flawless construction execution. From concept to
+                    completion, we build environments that tell a story of innovation, precision, and enduring quality.
                   </p>
                 </div>
 
@@ -74,52 +71,19 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Right circle */}
+            {/* Right circle (simple – no missing asset) */}
             <div className="col-xl-4 col-md-2">
               <div className="year-experience-circle">
-                {/* Online SVG-like circle (so missing asset problem nahi) */}
-                <div
-                  style={{
-                    width: 260,
-                    height: 260,
-                    borderRadius: "50%",
-                    border: "2px solid rgba(255,255,255,.35)",
-                    display: "grid",
-                    placeItems: "center",
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 90,
-                      height: 90,
-                      borderRadius: "50%",
-                      background: "var(--brand)",
-                      display: "grid",
-                      placeItems: "center",
-                      color: "#111",
-                      fontWeight: 900,
-                    }}
-                  >
-                    25+ yrs
-                  </div>
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 16,
-                      borderRadius: "50%",
-                      border: "1px solid rgba(255,255,255,.18)",
-                    }}
-                  />
+                <div className="hero-circle">
+                  <div className="hero-circle-inner">25+ yrs</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* ✅ HERO INFO BOX (3 cards EXACT layout) */}
+      {/* HERO INFO BOX (✅ 3 cards MUST show) */}
       <div className="hero-info-box">
         <div className="container">
           <div className="row">
@@ -143,36 +107,23 @@ export default function Hero() {
 
                   <div className="hero-info-image">
                     <figure className="image-anime reveal">
-                      <img src={INFO_IMG_1} alt="DesignBuild" />
+                      <img src={INFO_IMG_1} alt="DesignBuild" loading="eager" />
                     </figure>
                   </div>
                 </div>
 
-             {/* BOX 2 (image only) */}
-<div className="hero-info-item box-2">
-  <figure className="image-anime reveal">
-    <img src={INFO_IMG_2} alt="Project preview" />
-  </figure>
-</div>
+                {/* BOX 2 (✅ CENTER IMAGE CARD) */}
+                <div className="hero-info-item box-2">
+                  <figure className="image-anime reveal">
+                    <img src={INFO_IMG_2} alt="Project preview" loading="eager" />
+                  </figure>
+                </div>
 
-                {/* BOX 3 (black stats card) */}
+                {/* BOX 3 */}
                 <div className="hero-info-item box-3">
                   <div className="hero-info-header">
                     <div className="icon-box">
-                      <div
-                        style={{
-                          width: 56,
-                          height: 56,
-                          borderRadius: 14,
-                          background: "var(--brand)",
-                          display: "grid",
-                          placeItems: "center",
-                          color: "#111",
-                          fontWeight: 900,
-                        }}
-                      >
-                        ✦
-                      </div>
+                      <div className="hero-mini-icon">✦</div>
                     </div>
 
                     <div className="satisfy-client-images">
@@ -192,16 +143,69 @@ export default function Hero() {
                       <span className="counter">15</span>K+
                     </h2>
                   </div>
-
-                  {/* background circles */}
-                  <div className="hero-info-bg-icon">
-                    <img src={INFO_IMG_3} alt="" style={{ opacity: 0 }} />
-                  </div>
                 </div>
               </div>
 
-              {/* extra small fix: your screenshot wali ring bottom-right */}
+              {/* ✅ IMPORTANT FIXES so 3 cards + images never disappear */}
               <style>{`
+                /* circle */
+                .hero-circle{
+                  width: 260px; height: 260px;
+                  border-radius: 50%;
+                  border: 2px solid rgba(255,255,255,.35);
+                  display:grid; place-items:center;
+                  position: relative;
+                }
+                .hero-circle:before{
+                  content:"";
+                  position:absolute;
+                  inset:16px;
+                  border-radius:50%;
+                  border:1px solid rgba(255,255,255,.18);
+                }
+                .hero-circle-inner{
+                  width: 92px; height: 92px;
+                  border-radius:50%;
+                  background: var(--brand);
+                  display:grid; place-items:center;
+                  color:#111;
+                  font-weight: 900;
+                }
+
+                /* make images ALWAYS have height + visible */
+                .hero-info-item.box-1 .hero-info-image,
+                .hero-info-item.box-2 figure{
+                  height: 100%;
+                }
+                .hero-info-item.box-1 .hero-info-image{
+                  min-height: 220px;
+                }
+                .hero-info-item.box-2{
+                  min-height: 320px; /* ✅ this was missing -> center card collapsed */
+                  overflow:hidden;
+                  border-radius: 30px;
+                }
+                .hero-info-item.box-1 img,
+                .hero-info-item.box-2 img{
+                  width:100%;
+                  height:100%;
+                  object-fit:cover;
+                  opacity: 1 !important;
+                  transform:none !important;
+                  display:block;
+                }
+
+                /* icon in black card */
+                .hero-mini-icon{
+                  width:56px;height:56px;
+                  border-radius:14px;
+                  background: var(--brand);
+                  display:grid;place-items:center;
+                  color:#111;
+                  font-weight:900;
+                }
+
+                /* ring decoration bottom-right like template */
                 .hero-info-item.box-3{
                   position:relative;
                   overflow:hidden;

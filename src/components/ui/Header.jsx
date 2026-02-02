@@ -115,6 +115,7 @@ export default function Header() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 10,
+                background: "#FED403",
                   }}
                 >
                   Contact Us <span style={{ display: "inline-grid", placeItems: "center" }}>→</span>
