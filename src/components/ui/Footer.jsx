@@ -113,7 +113,7 @@ export default function Footer() {
           </div>
 
           {/* Proof block: image + video show */}
-          <div className="mt-4">
+          {/* <div className="mt-4">
             <div className="row g-4">
               <div className="col-md-6">
                 <div style={{ borderRadius: 18, overflow: "hidden" }}>
@@ -137,7 +137,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
         </div>
       </div>
