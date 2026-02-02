@@ -148,12 +148,12 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* BOX 2 (image only) */}
-                <div className="hero-info-item box-2">
-                  <figure className="image-anime reveal">
-                    <img src={INFO_IMG_2} alt="Project preview" />
-                  </figure>
-                </div>
+             {/* BOX 2 (image only) */}
+<div className="hero-info-item box-2">
+  <figure className="image-anime reveal">
+    <img src={INFO_IMG_2} alt="Project preview" />
+  </figure>
+</div>
 
                 {/* BOX 3 (black stats card) */}
                 <div className="hero-info-item box-3">

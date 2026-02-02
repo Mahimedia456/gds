@@ -11991,3 +11991,13 @@ header.main-header.header-silver .header-sticky.active{
 		display: none;
 	}
 }
+.hero-info-item.box-2 figure,
+.hero-info-item.box-2 img {
+  height: 100%;
+}
+.hero-info-item.box-2 img {
+  min-height: 260px; /* ensures middle card appears */
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
