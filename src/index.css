@@ -62,3 +62,88 @@ body { margin: 0; }
   .animate-spin-slow { animation: spin 18s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 }
+/* HEADER FIXES */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.header-sticky {
+  background: linear-gradient(90deg, rgba(6, 16, 26, 0.92), rgba(20, 20, 20, 0.55)) !important;
+  backdrop-filter: blur(10px);
+}
+
+.main-header.is-scrolled .header-sticky {
+  background: linear-gradient(90deg, rgba(6, 16, 26, 0.98), rgba(20, 20, 20, 0.8)) !important;
+}
+
+.header-logo {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+/* CTA - force yellow */
+.header-cta {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: var(--brand) !important;
+  color: #000 !important;
+  font-weight: 800;
+  text-decoration: none !important;
+}
+
+.header-cta-arrow {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  width: 38px;
+  border-radius: 10px;
+  background: #000 !important;
+  color: #fff !important;
+  font-weight: 900;
+}
+
+.header-cta:hover {
+  filter: brightness(0.95);
+}
+
+/* fix template overriding tailwind utilities */
+.lg\:inline-flex {
+  background: unset !important;
+  color: unset !important;
+  height: unset !important;
+}
+/* ===== HERO: stop template overlays from dimming it ===== */
+.hero::before,
+.hero::after,
+.dark-section::before,
+.dark-section::after {
+  content: none !important;
+}
+
+.hero .hero-overlay,
+.dark-section .hero-overlay {
+  display: none !important;
+}
+
+/* ensure hero background isn't faded by global rules */
+.hero,
+.dark-section {
+  opacity: 1 !important;
+  filter: none !important;
+}
+/* ===== HEADER: force desktop menu visible (no bootstrap JS needed) ===== */
+@media (min-width: 992px) {
+  .navbar .navbar-collapse.collapse {
+    display: flex !important;
+    visibility: visible !important;
+    height: auto !important;
+  }
+}

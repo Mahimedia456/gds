@@ -2,23 +2,9 @@
 import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 
-const NAV = [
-  { label: "Home", href: "#top" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Blog", href: "#blog" },
-];
-
-const PAGES = [
-  { label: "Projects", href: "#projects" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQs", href: "#faqs" },
-];
-
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [pagesOpen, setPagesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -27,139 +13,135 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const onDoc = (e) => {
-      const el = e.target;
-      if (!el.closest?.("[data-pages]")) setPagesOpen(false);
-    };
-    document.addEventListener("click", onDoc);
-    return () => document.removeEventListener("click", onDoc);
-  }, []);
+  // close mobile menu on anchor click
+  const onNavClick = () => setOpen(false);
 
   return (
-    <header
-      id="top"
-      className={[
-        "fixed top-0 left-0 right-0 z-50",
-        "transition-all duration-300",
-        scrolled
-          ? "bg-[#0b1f2e]/85 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,.25)]"
-          : "bg-[#0b1f2e]/45 backdrop-blur-sm",
-      ].join(" ")}
-    >
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="flex h-[84px] items-center justify-between gap-4">
-          {/* Logo (ONLY ONE) */}
-          <a href="#top" className="flex items-center">
-            <img src={logo} alt="GDS Mechanical" className="h-10 w-auto" />
-          </a>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-9">
-            {NAV.map((x) => (
-              <a
-                key={x.label}
-                href={x.href}
-                className="text-sm font-semibold text-white/90 hover:text-white transition"
-              >
-                {x.label}
-              </a>
-            ))}
-
-            <div className="relative" data-pages>
-              <button
-                type="button"
-                onClick={() => setPagesOpen((v) => !v)}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 hover:text-white transition"
-              >
-                Pages <span className={`transition ${pagesOpen ? "rotate-180" : ""}`}>▾</span>
-              </button>
-
-              {pagesOpen && (
-                <div className="absolute left-0 mt-3 w-56 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/10">
-                  {PAGES.map((p) => (
-                    <a
-                      key={p.label}
-                      href={p.href}
-                      className="block px-4 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100"
-                      onClick={() => setPagesOpen(false)}
-                    >
-                      {p.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <a
-              href="#contact"
-              className="text-sm font-semibold text-white/90 hover:text-white transition"
-            >
-              Contact Us
+    <header className={`main-header ${scrolled ? "is-sticky" : ""}`} id="top">
+      <div className={`header-sticky ${scrolled ? "active" : ""}`}>
+        <nav className="navbar navbar-expand-lg">
+          <div className="container">
+            {/* ✅ ONLY ONE LOGO */}
+            <a className="navbar-brand" href="#top" aria-label="GDS Mechanical">
+              <img src={logo} alt="GDS Mechanical" style={{ height: 34, width: "auto" }} />
             </a>
-          </nav>
 
-          {/* CTA (forced visible even if custom.css overrides) */}
-          <a
-            href="#contact"
-            className={[
-              "hidden lg:inline-flex items-center gap-3 rounded-xl",
-              "!bg-[var(--brand)] !text-black",
-              "px-5 py-3 text-sm font-extrabold",
-              "shadow-[0_10px_25px_rgba(0,0,0,.25)]",
-              "hover:brightness-95 transition",
-            ].join(" ")}
-          >
-            <span className="!text-black">Contact Us</span>
-            <span className="grid h-9 w-9 place-items-center rounded-lg !bg-black !text-white">
-              →
-            </span>
-          </a>
+            {/* ✅ Mobile toggle (no bootstrap js) */}
+            <button
+              className={`navbar-toggler ${open ? "active" : ""}`}
+              type="button"
+              aria-label="Toggle navigation"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              style={{
+                border: "0",
+                background: "transparent",
+                padding: 0,
+              }}
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
 
-          {/* Mobile */}
-          <button
-            type="button"
-            className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Open menu"
-          >
-            {open ? "✕" : "☰"}
-          </button>
-        </div>
+            {/* ✅ Works with bootstrap css: add "show" */}
+            <div className={`collapse navbar-collapse main-menu ${open ? "show" : ""}`}>
+              <div className="nav-menu-wrapper">
+                <ul className="navbar-nav mr-auto" id="menu">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#home" onClick={onNavClick}>
+                      Home
+                    </a>
+                  </li>
 
-        {/* Mobile menu */}
-        {open && (
-          <div className="lg:hidden pb-4">
-            <div className="rounded-2xl bg-[#0b1f2e]/95 ring-1 ring-white/10 overflow-hidden">
-              {[...NAV, { label: "Projects", href: "#projects" }, { label: "Contact Us", href: "#contact" }].map(
-                (x) => (
-                  <a
-                    key={x.label}
-                    href={x.href}
-                    className="block px-4 py-4 text-sm font-semibold text-white/90 hover:bg-white/10"
-                    onClick={() => setOpen(false)}
-                  >
-                    {x.label}
-                  </a>
-                )
-              )}
+                  <li className="nav-item">
+                    <a className="nav-link" href="#about" onClick={onNavClick}>
+                      About Us
+                    </a>
+                  </li>
 
-              <div className="px-4 pb-4">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#services" onClick={onNavClick}>
+                      Services
+                    </a>
+                  </li>
+
+                  <li className="nav-item">
+                    <a className="nav-link" href="#blog" onClick={onNavClick}>
+                      Blog
+                    </a>
+                  </li>
+
+                  {/* Pages dropdown (basic) */}
+                  <li className="nav-item submenu">
+                    <a className="nav-link" href="#pages" onClick={(e) => e.preventDefault()}>
+                      Pages
+                    </a>
+                    <ul>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#projects" onClick={onNavClick}>
+                          Projects
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#pricing" onClick={onNavClick}>
+                          Pricing
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#faqs" onClick={onNavClick}>
+                          FAQs
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li className="nav-item">
+                    <a className="nav-link" href="#contact" onClick={onNavClick}>
+                      Contact Us
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* ✅ Contact button visible (force colors) */}
+              <div className="header-btn">
                 <a
                   href="#contact"
-                  className="mt-2 inline-flex w-full items-center justify-between rounded-xl !bg-[var(--brand)] px-5 py-3 text-sm font-extrabold !text-black"
-                  onClick={() => setOpen(false)}
+                  className="btn-default btn-highlighted"
+                  onClick={onNavClick}
+                  style={{
+                    background: "var(--brand)",
+                    color: "#111",
+                    border: "2px solid var(--brand)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
                 >
-                  Contact Us
-                  <span className="grid h-9 w-9 place-items-center rounded-lg !bg-black !text-white">
-                    →
-                  </span>
+                  Contact Us <span style={{ display: "inline-grid", placeItems: "center" }}>→</span>
                 </a>
               </div>
             </div>
           </div>
-        )}
+        </nav>
       </div>
+
+      {/* ✅ small css fix for toggler icon (if bootstrap icon not showing) */}
+      <style>{`
+        .navbar-toggler-icon{
+          width:44px;height:44px;border-radius:12px;
+          background: rgba(255,255,255,.08);
+          border: 1px solid rgba(255,255,255,.15);
+          position: relative;
+        }
+        .navbar-toggler-icon:before,
+        .navbar-toggler-icon:after{
+          content:"";
+          position:absolute;left:12px;right:12px;height:2px;
+          background:#fff;border-radius:2px;
+        }
+        .navbar-toggler-icon:before{ top:16px; box-shadow: 0 8px 0 #fff; }
+        .navbar-toggler-icon:after{ display:none; }
+      `}</style>
     </header>
   );
 }

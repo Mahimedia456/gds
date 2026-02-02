@@ -1,130 +1,232 @@
-import Reveal from "../motion/Reveal";
-import { Button } from "./Button";
+// src/components/ui/Hero.jsx
 import VideoModal from "./VideoModal";
-s
+
+const HERO_BG =
+  "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=2200&q=80";
+
+const INFO_IMG_1 =
+  "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1600&q=80";
+
+const INFO_IMG_2 =
+  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80";
+
+const INFO_IMG_3 =
+  "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1800&q=80";
+
+const AVATARS = [
+  "https://randomuser.me/api/portraits/men/32.jpg",
+  "https://randomuser.me/api/portraits/women/44.jpg",
+  "https://randomuser.me/api/portraits/men/65.jpg",
+  "https://randomuser.me/api/portraits/women/19.jpg",
+  "https://randomuser.me/api/portraits/men/12.jpg",
+];
+
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-24">
-      {/* Background */}
-      <div
-        className="absolute inset-0 -z-10 bg-[var(--dark)]"
+    <>
+      {/* ✅ HERO (template structure) */}
+      <section
+        id="home"
+        className="hero dark-section parallaxie"
         style={{
-          backgroundImage:
-            "linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.85)), url('/images/hero-bg.jpg')",
+          backgroundImage: `linear-gradient(90deg, rgba(9,20,32,.78) 0%, rgba(9,20,32,.55) 55%, rgba(9,20,32,.35) 100%), url(${HERO_BG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed", // parallax-like (simple + 1:1 feel)
+          backgroundAttachment: "fixed",
         }}
-      />
+      >
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-xl-8 col-md-10">
+              <div className="hero-content">
+                <div className="section-title">
+                  <h3>WHERE CREATIVITY MEETS STRUCTURAL MASTERY</h3>
+                  <h1>
+                    Where innovative design meet precision construction to create spaces that inspire
+                    and endure
+                  </h1>
+                  <p>
+                    Our approach unites visionary architecture with flawless construction execution.
+                    From concept to completion, we build environments that tell a story of innovation,
+                    precision, and enduring quality.
+                  </p>
+                </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <Reveal>
-              <p className="text-sm font-semibold text-white/80">
-                Where Creativity Meets Structural Mastery
-              </p>
-            </Reveal>
+                <div className="hero-content-body">
+                  <div className="hero-btn">
+                    <a href="#contact" className="btn-default btn-highlighted">
+                      Get Free Estimate
+                    </a>
+                  </div>
 
-            <Reveal delay={0.1}>
-              <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                Where innovative design meet precision construction to create spaces that inspire and endure
-              </h1>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p className="mt-6 max-w-2xl text-white/75">
-                Our approach unites visionary architecture with flawless construction execution.
-                From concept to completion, we build environments that tell a story of innovation,
-                precision, and enduring quality.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <div className="mt-8 flex flex-wrap items-center gap-6">
-                <Button>Get Free Estimate</Button>
-                <VideoModal
-                  trigger={
-                    <button className="group inline-flex items-center gap-3 text-white">
-                      <span className="grid h-12 w-12 place-items-center rounded-full bg-white/10 border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:scale-105">
-                        ▶
-                      </span>
-                      <span className="text-sm font-semibold">Watch Our Video</span>
-                    </button>
-                  }
-                  videoUrl="https://www.youtube.com/embed/Y-x0efG1seA"
-                />
+                  <div className="video-play-button">
+                    <VideoModal
+                      videoUrl="https://www.youtube.com/embed/Y-x0efG1seA"
+                      trigger={
+                        <button className="popup-video" type="button" aria-label="Play video">
+                          <i className="fa-solid fa-play" />
+                        </button>
+                      }
+                    />
+                    <h3>Watch Our Video</h3>
+                  </div>
+                </div>
               </div>
-            </Reveal>
-          </div>
+            </div>
 
-          {/* Right circle */}
-          <div className="hidden lg:col-span-4 lg:block">
-            <div className="grid place-items-center">
-              <img
-                src="/images/year-experience-circle-transperant.svg"
-                alt=""
-                className="w-[280px] animate-spin-slow"
-              />
+            {/* Right circle */}
+            <div className="col-xl-4 col-md-2">
+              <div className="year-experience-circle">
+                {/* Online SVG-like circle (so missing asset problem nahi) */}
+                <div
+                  style={{
+                    width: 260,
+                    height: 260,
+                    borderRadius: "50%",
+                    border: "2px solid rgba(255,255,255,.35)",
+                    display: "grid",
+                    placeItems: "center",
+                    position: "relative",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 90,
+                      height: 90,
+                      borderRadius: "50%",
+                      background: "var(--brand)",
+                      display: "grid",
+                      placeItems: "center",
+                      color: "#111",
+                      fontWeight: 900,
+                    }}
+                  >
+                    25+ yrs
+                  </div>
+
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 16,
+                      borderRadius: "50%",
+                      border: "1px solid rgba(255,255,255,.18)",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ✅ HERO INFO BOX (3 cards EXACT layout) */}
+      <div className="hero-info-box">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="hero-info-list">
+                {/* BOX 1 */}
+                <div className="hero-info-item box-1">
+                  <div className="hero-info-content-box">
+                    <div className="hero-info-item-content">
+                      <ul>
+                        <li>DesignBuild</li>
+                      </ul>
+                      <h3>Shaping the future of design</h3>
+                    </div>
+                    <div className="hero-info-btn">
+                      <a href="#about" className="readmore-btn">
+                        Learn More
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="hero-info-image">
+                    <figure className="image-anime reveal">
+                      <img src={INFO_IMG_1} alt="DesignBuild" />
+                    </figure>
+                  </div>
+                </div>
+
+                {/* BOX 2 (image only) */}
+                <div className="hero-info-item box-2">
+                  <figure className="image-anime reveal">
+                    <img src={INFO_IMG_2} alt="Project preview" />
+                  </figure>
+                </div>
+
+                {/* BOX 3 (black stats card) */}
+                <div className="hero-info-item box-3">
+                  <div className="hero-info-header">
+                    <div className="icon-box">
+                      <div
+                        style={{
+                          width: 56,
+                          height: 56,
+                          borderRadius: 14,
+                          background: "var(--brand)",
+                          display: "grid",
+                          placeItems: "center",
+                          color: "#111",
+                          fontWeight: 900,
+                        }}
+                      >
+                        ✦
+                      </div>
+                    </div>
+
+                    <div className="satisfy-client-images">
+                      {AVATARS.map((src) => (
+                        <div className="satisfy-client-image" key={src}>
+                          <figure className="image-anime">
+                            <img src={src} alt="Client" />
+                          </figure>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="hero-info-counter-box">
+                    <h3>Happy Satisfied Customers</h3>
+                    <h2>
+                      <span className="counter">15</span>K+
+                    </h2>
+                  </div>
+
+                  {/* background circles */}
+                  <div className="hero-info-bg-icon">
+                    <img src={INFO_IMG_3} alt="" style={{ opacity: 0 }} />
+                  </div>
+                </div>
+              </div>
+
+              {/* extra small fix: your screenshot wali ring bottom-right */}
+              <style>{`
+                .hero-info-item.box-3{
+                  position:relative;
+                  overflow:hidden;
+                }
+                .hero-info-item.box-3:after{
+                  content:"";
+                  position:absolute;
+                  width:220px;height:220px;
+                  border-radius:50%;
+                  border: 1px solid rgba(255,255,255,.18);
+                  right:-110px; bottom:-110px;
+                }
+                .hero-info-item.box-3:before{
+                  content:"";
+                  position:absolute;
+                  width:120px;height:120px;
+                  border-radius:50%;
+                  border: 1px solid rgba(255,255,255,.12);
+                  right:40px; bottom:30px;
+                }
+              `}</style>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Hero info box */}
-      <div className="mx-auto max-w-7xl px-4 -mt-16 pb-14">
-        <div className="grid gap-6 lg:grid-cols-12">
-          <div className="lg:col-span-5 rounded-3xl bg-white p-6 shadow-lg overflow-hidden group">
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <p className="text-xs font-semibold text-neutral-500">DesignBuild</p>
-                <h3 className="mt-2 text-xl font-bold">Shaping the future of design</h3>
-              </div>
-              <a className="text-sm font-semibold text-[var(--brand)] hover:underline" href="#about">
-                Learn More
-              </a>
-            </div>
-
-            <div className="mt-6 overflow-hidden rounded-2xl">
-              <img
-                src="/images/hero-info-image-1.jpg"
-                alt=""
-                className="h-44 w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-            </div>
-          </div>
-
-          <div className="lg:col-span-3 rounded-3xl overflow-hidden shadow-lg group">
-            <img
-              src="/images/hero-info-image-2.jpg"
-              alt=""
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-          </div>
-
-          <div className="lg:col-span-4 rounded-3xl bg-[var(--dark)] p-6 text-white shadow-lg relative overflow-hidden">
-            <div className="flex items-center justify-between">
-              <img src="/images/icon-hero-info-1.svg" alt="" className="h-10 w-10" />
-              <div className="flex -space-x-2">
-                {["author-1.jpg","author-2.jpg","author-3.jpg","author-4.jpg","author-5.jpg"].map((a) => (
-                  <img key={a} src={`/images/${a}`} alt="" className="h-9 w-9 rounded-full border-2 border-[var(--dark)] object-cover" />
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <p className="text-sm text-white/70">Happy Satisfied Customers</p>
-              <h3 className="mt-2 text-4xl font-extrabold">15K+</h3>
-            </div>
-
-            <img
-              src="/images/icon-hero-info-bg-1.svg"
-              alt=""
-              className="absolute -right-6 -bottom-6 h-32 w-32 opacity-20"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+    </>
   );
 }
